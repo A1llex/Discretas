@@ -1,0 +1,7 @@
+-- Alex Gerardo Fernandez Aguilar 314338097
+-- Luis Erick Montes Garcia 419004547
+
+
+Me parecio una practica muy buena porque fue un reto desafiante
+
+el unico problema que tengo es que en el 2.2 no pude implementar una lambda para ayudarme y tampoco pude encontrar informacion sobre el tema
