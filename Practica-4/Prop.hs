@@ -27,10 +27,10 @@ module Prop where
   show Falso = "F" -- F
   show (Var x) = x -- P 
   show (Neg p) = "¬ " ++ show p -- ¬ P
-  show (Conj p q) = "(" ++ show p ++ " ∧ " ++ show q ++ ")" -- (P ∧ Q)
-  show (Disy p q) = "(" ++ show p ++ " ∨ " ++ show q ++ ")" -- (P ∨ Q)
-  show (Impl p q) = "(" ++ show p ++ " → " ++ show q ++ ")" -- (P → Q)
-  show (Syss p q) = "(" ++ show p ++ " ↔ " ++ show q ++ ")" -- (P ↔ Q)
+  show (Conj p q) = "(" ++ show p ++ " && " ++ show q ++ ")" -- (P ∧ Q)
+  show (Disy p q) = "(" ++ show p ++ " || " ++ show q ++ ")" -- (P ∨ Q)
+  show (Impl p q) = "(" ++ show p ++ " -> " ++ show q ++ ")" -- (P → Q)
+  show (Syss p q) = "(" ++ show p ++ " <-> " ++ show q ++ ")" -- (P ↔ Q)
 
 
 -- EQUIVALENCIAS LÓGICAS 
