@@ -35,7 +35,7 @@ module Prop where
 
  -- Ejercicio 1.1
  eliminacion :: Prop -> Prop
- eliminacion (Impl (Var x) (Var y)) = (Disy (Neg(Var x)) (Var y))
+ eliminacion (Impl (Var x) (Var y)) = (Disy (Neg (Var x)) (Var y))
  eliminacion (Syss (Var x) (Var y)) = (Conj (Disy (Neg (Var x)) (Var y)) (Disy (Var x) (Neg (Var y))))
 
  -- Ejercicio 1.2
