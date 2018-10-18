@@ -1,6 +1,8 @@
 module Prop where 
  
  import Data.List
+ import GHC.IO.Encoding
+
 
 --DEFINICIONES 
 
