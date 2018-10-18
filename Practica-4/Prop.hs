@@ -35,8 +35,8 @@ module Prop where
 
  -- Ejercicio 1.1
  eliminacion :: Prop -> Prop
- -- Aquí va tu código
- eliminacion = error "Función no definida"
+ eliminacion (Impl (Var x) (Var y)) = (Disy (Neg(Var x)) (Var y))
+ eliminacion (Syss (Var x) (Var y)) = (Conj (Disy (Neg (Var x)) (Var y)) (Disy (Var x) (Neg (Var y))))
 
  -- Ejercicio 1.2
  deMorgan :: Prop -> Prop
