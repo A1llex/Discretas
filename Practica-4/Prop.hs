@@ -55,13 +55,14 @@ module Prop where
  deMorgan (Syss (x) (y)) = (Syss (deMorgan x) (deMorgan y))
  deMorgan (Conj (x) (y)) = (Conj (deMorgan x) (deMorgan y))
  deMorgan (Disy (x) (y)) = (Disy (deMorgan x) (deMorgan y))
+ --resumi los casos de verdadero falso y var con este modelo de abajo , lo puse hasta abajo para que solo sea como ultimo recurso si no encuentra con que empatar antes
  deMorgan (p) = (p) 
 
 -- EVALUACIÓN Y ANÁLISIS SINTÁCTICO DE EXPRESIONES
 
  -- Ejercicio 2.1 
  interp :: Prop -> Estado -> Bool
- -- 
+ -- valua junto con el estado y la funcion auxiliar  
  interp (Verdadero) e = True
  interp (Falso) e = False
  interp (Var x ) e = interp (buscar x e) []
