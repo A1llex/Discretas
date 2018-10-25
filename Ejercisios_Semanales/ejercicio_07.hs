@@ -28,10 +28,10 @@ instance Show Prop where
  show Falso = "F"
  show (Var x) = x
  show (Neg p) = "¬ " ++ show p
- show (Conj p q) = "(" ++ show p ++ " ∧ " ++ show q ++ ")"
- show (Disy p q) = "(" ++ show p ++ " ∨ " ++ show q ++ ")"
- show (Impl p q) = "(" ++ show p ++ " → " ++ show q ++ ")"
- show (Syss p q) = "(" ++ show p ++ " ↔ " ++ show q ++ ")"
+ show (Conj p q) = "(" ++ show p ++ " && " ++ show q ++ ")"
+ show (Disy p q) = "(" ++ show p ++ " || " ++ show q ++ ")"
+ show (Impl p q) = "(" ++ show p ++ " -> " ++ show q ++ ")"
+ show (Syss p q) = "(" ++ show p ++ " <-> " ++ show q ++ ")"
 
 --EJERCICIOS
 

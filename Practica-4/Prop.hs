@@ -1,3 +1,7 @@
+--Espinal Cruces Martin Felipe 316155362
+--Fernandez Aguilar Alex Gerardo 314338097
+--Luis Erick Montes Garcia 419004547
+
 module Prop where 
  
  import Data.List
@@ -43,6 +47,7 @@ module Prop where
  eliminacion (Neg (p)) = (Neg (eliminacion p))
  eliminacion (Conj (x) (y)) = (Conj (eliminacion x) (eliminacion y))
  eliminacion (Disy (x) (y)) = (Disy (eliminacion x) (eliminacion y))
+ --resumi los casos de verdadero falso y var con este modelo de abajo , lo puse hasta abajo para que solo sea como ultimo recurso si no encuentra con que empatar antes
  eliminacion (p) = (p)
 
  -- Ejercicio 1.2
@@ -81,11 +86,31 @@ module Prop where
  buscar a [] = error"No esta la variable en el estado"
 
 
-
   -- Ejercicio 2.2
  truthTable :: Prop -> String
-  -- Aquí va tu código
+  -- permutations []
+  -- nub [] []   quita los elementos es comun
  truthTable = error "Función no definida"
+ {--
+  truthTable p 
+  |()
+    merg (nub(variables (   ) ))
+
+ --}
+
+ variables :: Prop -> [String]
+ variables (Var x) = [x]
+ variables (Neg x) = (variables(x))
+ variables (Conj x y) = (variables (x))++(variables (y))
+ variables (Disy x y) = (variables (x))++(variables (y))
+ variables (Impl x y) = (variables (x))++(variables (y))
+ variables (Syss x y) = (variables (x))++(variables (y))
+
+ merg :: [String] -> Estado
+ merg [] = []
+ merg (a:as) = [(a,Verdadero),(a,Falso)]++(merg as)
+
+
 
  -- Ejercicio 2.3  
  correcto :: [Prop] -> Prop -> Bool 

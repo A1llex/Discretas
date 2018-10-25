@@ -34,7 +34,7 @@ main = do
  print (P ((truthTable (Neg (Conj (Impl (Var "P") (Var "Q")) (Syss (Var "Q") (Disy (Var "R") (Var "S")))))) == "Contingencia"))
  print (P ((truthTable (Impl (Conj (Impl (Var "P") (Var "Q")) (Var "P")) (Var "Q"))) == "Tautología"))
  print (P ((truthTable (Conj (Disy (Var "P") (Var "Q")) (Neg (Disy (Var "P") (Var "Q"))))) == "Contradicción"))
-
+{--
  print "---------- Pruebas del Ejercicio 2.3; Función: correcto ----------"
  print (P (correcto [(Impl (Var "P") (Var "Q")), (Var "P")] (Var "Q")))
  print (P (correcto [(Impl (Impl (Var "P") (Var "Q")) (Conj (Neg (Var "R")) (Disy (Var "P") Verdadero))), (Neg (Var "P"))] (Conj (Neg (Var "R")) (Disy (Var "P") Verdadero))))
