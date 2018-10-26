@@ -94,8 +94,8 @@ module Prop where
  {--
   truthTable p 
   |()
-    merg (nub(variables (   ) ))
-
+    est (nub(variables (   ) ))
+  no lo que se tien que hacer es varias lsitas de estados con las combinaciones posibles 
  --}
 
  variables :: Prop -> [String]
@@ -106,9 +106,9 @@ module Prop where
  variables (Impl x y) = (variables (x))++(variables (y))
  variables (Syss x y) = (variables (x))++(variables (y))
 
- merg :: [String] -> Estado
- merg [] = []
- merg (a:as) = [(a,Verdadero),(a,Falso)]++(merg as)
+ est :: [String] -> Estado
+ est [] = []
+ est (a:as) = [(a,Verdadero),(a,Falso)]++(merg as)
 
 
 
