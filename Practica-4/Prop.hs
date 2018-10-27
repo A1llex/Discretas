@@ -77,8 +77,8 @@ module Prop where
  interp (Impl (x) (y) ) e = interp (eliminacion (Impl (x) (y) )) e
  interp (Syss (x) (y) ) e = interp (eliminacion (Syss (x) (y) )) e
 
---funcion auxiliar busca el string en el primer elelemnto de la lista de tubplas
---no lo hice en una lambda porque si existe el caso de que no existe el String en el estado no funcionara
+ --funcion auxiliar busca el string en el primer elelemnto de la lista de tubplas
+ --no lo hice en una lambda porque si existe el caso de que no existe el String en el estado no funcionara
  buscar :: String -> Estado -> Prop
  buscar a ((x,y):xs)
   | (a == x) = y
@@ -88,6 +88,7 @@ module Prop where
 
   -- Ejercicio 2.2
  truthTable :: Prop -> String
+ --lo que hace es valuar en cada estado posible de todas las variables y regresa una respuesta de que es y se decide con un guard para revisar la lista reducida de un booleano
  truthTable p 
   | ([True] == (nub (table p (estados p ) ))) = "Tautología"
   | ([False] == (nub (table p (estados p ) ))) = "Contradicción"
@@ -95,26 +96,26 @@ module Prop where
 
 
  table :: Prop -> [Estado] -> [Bool]
+ --lo que hace es hacer una lista de la interpretacion de una propocsicion en un estado
  table p [] = []
  table p (x:xs) = (interp p x ): table p xs
 
  quitaRepetidosPar ::(Eq a) => [(a,b)] -> [(a,b)]
+ --lo que hace es recibir una lista con tuplas y quita los repetidos del primer elemento de la tupla de la lista
  quitaRepetidosPar [] = []
  quitaRepetidosPar ((a,b):xs) = (a,b):quitaRepetidosPar ([(x,y)| (x,y) <- (xs), x/=a])
 
  -- Función que calcula todos los posibles estados de una Prop.
  estados :: Prop -> [Estado]
- estados p = nub -- Elminamos los estados que pudieran estar repetidos.
-            -- Ordenamos cada uno de los estados.
+ --lo que hace es crear todos las combinaciones de verdadero y falso con las pvariables de la proposicion y se quitan de cada lista los repetidos de la primer variable despues se quitan las listas que quedaron igual con un sort de entremedias
+ estados p = nub
             $ map sort
-              -- Dejamos una única aparicion de las variables en cada estado.
               $ map quitaRepetidosPar
-              -- Calculamos todas las permutaciondes de las
-              --combinaciones de las Variables con las constantes lógicas
               $ permutations [(x,y) | x <- (nub(variables p)), y <- [Verdadero,Falso]]
  
 
  variables :: Prop -> [String]
+ --lo que hace es buscar los nombres de las variables y ponerlos en una lista
  variables (Var x) = [x]
  variables (Neg x) = (variables(x))
  variables (Conj x y) = (variables (x))++(variables (y))
@@ -127,6 +128,8 @@ module Prop where
 
  -- Ejercicio 2.3  
  correcto :: [Prop] -> Prop -> Bool 
-  -- Aquí va tu código
- correcto = error "Función no definida"
+ --lo que necesito es hacer que suponiendo que los antecedentes son verdaderos sumado con la conclusion debera ser una contradiccion con un & basta
+ --correcto (x:xs)  y 
 
+
+ --esCorrecto 
