@@ -98,10 +98,19 @@ module Prop where
  table p [] = []
  table p (x:xs) = (interp p x ): table p xs
 
+ quitaRepetidosPar ::(Eq a) => [(a,b)] -> [(a,b)]
+ quitaRepetidosPar [] = []
+ quitaRepetidosPar ((a,b):xs) = (a,b):quitaRepetidosPar ([(x,y)| (x,y) <- (xs), x/=a])
+
  -- Función que calcula todos los posibles estados de una Prop.
  estados :: Prop -> [Estado]
- estados p = nub 
+ estados p = nub -- Elminamos los estados que pudieran estar repetidos.
+            -- Ordenamos cada uno de los estados.
             $ map sort
+              -- Dejamos una única aparicion de las variables en cada estado.
+              $ map quitaRepetidosPar
+              -- Calculamos todas las permutaciondes de las
+              --combinaciones de las Variables con las constantes lógicas
               $ permutations [(x,y) | x <- (nub(variables p)), y <- [Verdadero,Falso]]
  
 
