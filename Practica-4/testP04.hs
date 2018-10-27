@@ -27,7 +27,7 @@ main = do
  print (P (interp (Neg (Conj (Impl (Var "P") (Var "Q")) (Syss (Var "Q") (Disy (Var "R") (Var "S"))))) [("P", Verdadero), ("Q", Falso), ("R", Falso), ("S", Verdadero)]))
  print (P (interp (Impl (Conj (Impl (Var "P") (Var "Q")) (Var "P")) (Var "Q")) [("P", Falso), ("Q", Falso)]))
  print (P (not $ interp (Syss (Disy (Var "P") (Var "Q")) (Neg (Disy (Var "P") (Var "Q")))) [("P", Verdadero), ("Q", Verdadero)]))
-{--
+
  print "---------- Pruebas del Ejercicio 2.2; Función: truthTable ----------"
  print (P ((truthTable (Impl (Var "P") (Var "Q"))) == "Contingencia"))
  print (P ((truthTable (Impl (Impl (Var "P") (Var "Q")) (Conj (Neg (Var "R")) (Disy (Var "P") Verdadero)))) == "Contingencia"))

@@ -88,15 +88,22 @@ module Prop where
 
   -- Ejercicio 2.2
  truthTable :: Prop -> String
-  -- permutations []
-  -- nub [] []   quita los elementos es comun
- truthTable = error "Función no definida"
- {--
-  truthTable p 
-  |()
-    est (nub(variables (   ) ))
-  no lo que se tien que hacer es varias lsitas de estados con las combinaciones posibles 
- --}
+ truthTable p 
+  | ([True] == (nub (table p (estados p ) ))) = "Tautología"
+  | ([False] == (nub (table p (estados p ) ))) = "Contradicción"
+  | otherwise = "Contingencia"
+
+
+ table :: Prop -> [Estado] -> [Bool]
+ table p [] = []
+ table p (x:xs) = (interp p x ): table p xs
+
+ -- Función que calcula todos los posibles estados de una Prop.
+ estados :: Prop -> [Estado]
+ estados p = nub 
+            $ map sort
+              $ permutations [(x,y) | x <- (nub(variables p)), y <- [Verdadero,Falso]]
+ 
 
  variables :: Prop -> [String]
  variables (Var x) = [x]
@@ -105,10 +112,7 @@ module Prop where
  variables (Disy x y) = (variables (x))++(variables (y))
  variables (Impl x y) = (variables (x))++(variables (y))
  variables (Syss x y) = (variables (x))++(variables (y))
-
- est :: [String] -> Estado
- est [] = []
- est (a:as) = [(a,Verdadero),(a,Falso)]++(merg as)
+ variables p = []
 
 
 
