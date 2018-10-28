@@ -125,13 +125,12 @@ module Prop where
  --resumi los casos de verdadero falso y var con este modelo de abajo , lo puse hasta abajo para que solo sea como ultimo recurso si no encuentra con que empatar antes
  variables p = []
 
+ -- Ejercicio 2.3  
+ correcto :: [Prop] -> Prop -> Bool 
+ --lo que hace es regresar un booleano comparado con el caso de contradiccion de interpretacion porque si al argumento le agregamos la negacion de la conclusion se puede notar si es un argumento correcto o no y despues se lo pasamos a la funcion que los ligara con la disyuncion y solo quedfa valuarlo
+ correcto x y = (truthTable(argumento ((Neg y):x) )=="Contradicción")
 
  argumento :: [Prop] -> Prop
  --lo que hace es de una lista de proposiciones ligarlas con una disyuncion(&&) elemento por elemento
  argumento [x] = x
  argumento (x:xs) = (Conj (x) (argumento xs))
-
- -- Ejercicio 2.3  
- correcto :: [Prop] -> Prop -> Bool 
- --lo que hace es regresar un booleano comparado con el caso de contradiccion de interpretacion porque si al argumento le agregamos la negacion de la conclusion se puede notar si es un argumento correcto o no y despues se lo pasamos a la funcion que los ligara con la disyuncion y solo quedfa valuarlo
- correcto x y = (truthTable(argumento ((Neg y):x) )=="Contradicción")
