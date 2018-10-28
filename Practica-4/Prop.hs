@@ -67,7 +67,7 @@ module Prop where
 
  -- Ejercicio 2.1 
  interp :: Prop -> Estado -> Bool
- -- valua junto con el estado y la funcion auxiliar  
+ -- valuala el valor de verdad con el estado dado siempre y cuando en el estado este especificado el valor de cada variable
  interp (Verdadero) e = True
  interp (Falso) e = False
  interp (Var x ) e = interp (buscar x e) []
@@ -77,7 +77,7 @@ module Prop where
  interp (Impl (x) (y) ) e = interp (eliminacion (Impl (x) (y) )) e
  interp (Syss (x) (y) ) e = interp (eliminacion (Syss (x) (y) )) e
 
- --funcion auxiliar busca el string en el primer elelemnto de la lista de tubplas
+ --funcion auxiliar busca el string en el primer elelemnto de la lista de tubplas su unica limitacion es que para cuando encuentre el primer elemento que haga match
  --no lo hice en una lambda porque si existe el caso de que no existe el String en el estado no funcionara
  buscar :: String -> Estado -> Prop
  buscar a ((x,y):xs)
@@ -96,7 +96,7 @@ module Prop where
 
 
  table :: Prop -> [Estado] -> [Bool]
- --lo que hace es hacer una lista de la interpretacion de una propocsicion en un estado
+ --lo que hace es hacer una lista de la interpretacion de cada estado en la lista para pasrlo a otra lista y tener cada valuacion guardad
  table p [] = []
  table p (x:xs) = (interp p x ): table p xs
 
@@ -122,18 +122,16 @@ module Prop where
  variables (Disy x y) = (variables (x))++(variables (y))
  variables (Impl x y) = (variables (x))++(variables (y))
  variables (Syss x y) = (variables (x))++(variables (y))
+ --resumi los casos de verdadero falso y var con este modelo de abajo , lo puse hasta abajo para que solo sea como ultimo recurso si no encuentra con que empatar antes
  variables p = []
 
 
  argumento :: [Prop] -> Prop
+ --lo que hace es de una lista de proposiciones ligarlas con una disyuncion(&&) elemento por elemento
  argumento [x] = x
  argumento (x:xs) = (Conj (x) (argumento xs))
 
  -- Ejercicio 2.3  
  correcto :: [Prop] -> Prop -> Bool 
+ --lo que hace es regresar un booleano comparado con el caso de contradiccion de interpretacion porque si al argumento le agregamos la negacion de la conclusion se puede notar si es un argumento correcto o no y despues se lo pasamos a la funcion que los ligara con la disyuncion y solo quedfa valuarlo
  correcto x y = (truthTable(argumento ((Neg y):x) )=="Contradicción")
- --lo que necesito es hacer que suponiendo que los antecedentes son verdaderos sumado con la conclusion debera ser una contradiccion con un & basta
- --
- -- no solo hay que unir todo con un & y un no B y debe ser contradiccion
-
-
