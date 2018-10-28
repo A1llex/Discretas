@@ -125,11 +125,15 @@ module Prop where
  variables p = []
 
 
+ argumento :: [Prop] -> Prop
+ argumento [x] = x
+ argumento (x:xs) = (Conj (x) (argumento xs))
 
  -- Ejercicio 2.3  
  correcto :: [Prop] -> Prop -> Bool 
+ correcto x y = (truthTable(argumento ((Neg y):x) )=="Contradicción")
  --lo que necesito es hacer que suponiendo que los antecedentes son verdaderos sumado con la conclusion debera ser una contradiccion con un & basta
- --correcto (x:xs)  y 
+ --
+ -- no solo hay que unir todo con un & y un no B y debe ser contradiccion
 
 
- --esCorrecto 
