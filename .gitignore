@@ -1,3 +1,7 @@
 
-Practica-5/Practica5.zip
+*.zip
 *.gz
+*.tar
+*.tar.gz
+*.exe
+*.o
