@@ -112,10 +112,12 @@ main = do
  print (P((minimo bt3) == 'h'))
  print (P((minimo bt4) == 1))
  print (P((minimo bt5) == [1]))
-
+{--
  print "---------- Pruebas del Ejercicio 2.7; Función: busca ----------"
  print (P(busca 4 bt1))
  print (P(busca 'a' bt2))
  print (P(not $ busca 'a' bt3))
  print (P(not $ busca 1729 bt4))
  print (P(busca [6,5,4,3,2,1] bt5))
+
+--}

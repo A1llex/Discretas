@@ -7,27 +7,43 @@ module Tree where
 
  --Ejercicio 2.1
  addTree :: (Ord a) => BinaryTree a -> a -> BinaryTree a
- addTree = error "Falta Implementar"
-
+ --
+ addTree (Void) e = (Node Void e Void)
+ addTree (Node (ai) r (ad) ) e 
+  | e < r = (Node (addTree ai e) r ad )
+  | e >= r = (Node ai r (addTree ad e) )
+  
  --Ejercicio 2.2
  inorder :: BinaryTree a -> [a]
- inorder = error "Falta Implementar"
+ --
+ inorder (Void) = []
+ inorder (Node Void r Void) = [r]
+ inorder (Node (ai) r (ad)) = (inorder ai) ++ [r] ++ (inorder ad)
 
  --Ejercicio 2.3
  preorder :: BinaryTree a -> [a]
- preorder = error "Falta Implementar"
+ --
+ preorder (Void) = []
+ preorder (Node Void r Void) = [r]
+ preorder (Node ai r ad ) = [r] ++ (preorder ai ) ++ (preorder ad )
 
  --Ejercicio 2.4
  postorder :: BinaryTree a -> [a]
- postorder = error "Falta Implementar"
+ postorder (Void) = []
+ postorder (Node Void r Void ) = [r]
+ postorder (Node ai r ad ) = (postorder ai ) ++ (postorder ad ) ++ [r]
 
  --Ejercicio 2.5
  maximo :: (Ord a) => BinaryTree a -> a
- maximo = error "Falta Implementar"
+ --ya sabiendo que es un arbol binario ordenado solo hay que tomar el elemento mas a la derecha
+ maximo (Node Void r Void) = r
+ maximo (Node ai r ad ) = (maximo ad )
 
  --Ejercicio 2.6
  minimo :: (Ord a) => BinaryTree a -> a
- minimo = error "Falta Implementar"
+ --sabiendo que es un arbol ordenado solo hay que tomar el elemto mas a la izquierda
+ minimo (Node Void r Void) = r
+ minimo (Node ai r ad ) = (minimo ai)
 
  --Ejercicio 2.7
  busca :: (Ord a) => a -> BinaryTree a -> Bool
