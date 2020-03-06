@@ -127,7 +127,7 @@ module Prop where
 
  -- Ejercicio 2.3  
  correcto :: [Prop] -> Prop -> Bool 
- --lo que hace es regresar un booleano comparado con el caso de contradiccion de interpretacion porque si al argumento le agregamos la negacion de la conclusion se puede notar si es un argumento correcto o no y despues se lo pasamos a la funcion que los ligara con la disyuncion y solo quedfa valuarlo
+ --lo que hace es regresar un booleano comparado con el caso de contradiccion de interpretacion porque si al argumento le agregamos la negacion de la conclusion se puede notar si es un argumento correcto o no y despues se lo pasamos a la funcion que los ligara con la disyuncion y solo queda valuarlo
  correcto x y = (truthTable(argumento ((Neg y):x) )=="Contradicción")
 
  argumento :: [Prop] -> Prop
